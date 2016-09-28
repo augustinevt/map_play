@@ -4,8 +4,8 @@
 
 = @markers
 
-%div{ style: 'width 800px;'}
-#map{style: 'width: 800px; height: 400px;'}
+%div{ style: 'width 1200px;'}
+#map{style: 'width: 1200px; height: 1200px;'}
 
 :javascript
   var markers = #{raw @markers}
@@ -16,13 +16,28 @@
       zoom: 2,
     });
 
+    var contentString = '<div><img src="http://media3.giphy.com/media/M7gtacN7aPNsc/giphy.gif" alt="this is gif"</div>'
+
+
     for( i = 0; i < markers.length; i++ ) {
-      var marker = new google.maps.Marker({
-      position: {lat: markers[i][1], lng: markers[i][2]},
-      map: map,
-       animation: google.maps.Animation.BOUNCE,
-      title: markers[i][0]
+
+      var infowindow = new google.maps.InfoWindow({
+          content: contentString
       });
+
+      var marker = new google.maps.Marker({
+        position: {lat: markers[i][1], lng: markers[i][2]},
+        map: map,
+        animation: google.maps.Animation.BOUNCE,
+        title: markers[i][0],
+        windowContent: contentString
+      });
+
+      marker.addListener('click', function() {
+        infowindow.setContent(this.windowContent);
+        infowindow.open(map, this);
+      });
+
     }
 
   }

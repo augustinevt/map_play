@@ -15,11 +15,22 @@
       center: {lat: lat, lng: lng},
       zoom: 8
     });
+
+    var contentString = '<div><img src="http://media3.giphy.com/media/M7gtacN7aPNsc/giphy.gif" alt="this is gif"</div>'
+
+    var infowindow = new google.maps.InfoWindow({
+        content: contentString
+    });
+
     var marker = new google.maps.Marker({
-    position: {lat: lat, lng: lng},
-    map: map,
-     animation: google.maps.Animation.BOUNCE,
-    title: 'Hello World!'
+      position: {lat: lat, lng: lng},
+      map: map,
+       animation: google.maps.Animation.BOUNCE,
+      title: 'Hello World!'
+    });
+
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
     });
   }
 

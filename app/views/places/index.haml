@@ -1,4 +1,4 @@
-
+#messages
 - @places.each do |place|
   %h1= link_to place.name, place_path(place)
 
@@ -9,6 +9,10 @@
 
 :javascript
   var markers = #{raw @markers}
+
+  var turn_red = function(){
+    $('#messages').append("<h1>HEMAN!! YEAH!!!</h1>");
+  }
 
   function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -30,12 +34,13 @@
         map: map,
         animation: google.maps.Animation.BOUNCE,
         title: markers[i][0],
-        windowContent: contentString
+        windowContent: '<h1>' + markers[i][0] + '#{ image_tag(@markers) }' + '</h1>'
       });
 
       marker.addListener('click', function() {
         infowindow.setContent(this.windowContent);
         infowindow.open(map, this);
+        turn_red();
       });
 
     }

@@ -3,6 +3,7 @@
 %h1= @place.latitude
 %h1= @place.longitude
 
+
 %div{ style: 'width 800px;'}
   #map{style: 'width: 800px; height: 400px;'}
 
@@ -16,7 +17,7 @@
       zoom: 8
     });
 
-    var contentString = '<div><img src="http://media3.giphy.com/media/M7gtacN7aPNsc/giphy.gif" alt="this is gif"</div>'
+    var contentString = '<div><img src="https://media.giphy.com/media/aTUrF9TPZYy6Q/giphy.gif" alt="this is gif"</div>'
 
     var infowindow = new google.maps.InfoWindow({
         content: contentString

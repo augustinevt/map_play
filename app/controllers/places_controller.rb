@@ -2,7 +2,9 @@ class PlacesController < ApplicationController
 
   def index
     @places = Place.all
-    @markers = Place.markefy 
+    @place_pages = Place.order(:name).page params[:page]
+    @markers = Place.markefy(@place_pages)
+    @image = 'http://media3.giphy.com/media/M7gtacN7aPNsc/giphy.gif'
   end
 
   def new

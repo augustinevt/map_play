@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+header {
+  font-family: 'Andada', serif;
+
+  background: linear-gradient(#F3FFBD, transparent 90%),
+              linear-gradient(0deg, #fff, transparent),
+
+  display: inline;
+  background-size: cover;
+  text-transform: uppercase;
+  text-shadow: 0 1px 1px rgba(0,0,0,.8);
+}

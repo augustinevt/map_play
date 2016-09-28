@@ -1,0 +1,28 @@
+
+- @places.each do |place|
+  %h1= link_to place.name, place_path(place)
+
+= @markers
+
+%div{ style: 'width 800px;'}
+#map{style: 'width: 800px; height: 400px;'}
+
+:javascript
+  var markers = #{raw @markers}
+
+  function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat:  41.390205, lng: 2.154007},
+      zoom: 2,
+    });
+
+    for( i = 0; i < markers.length; i++ ) {
+      var marker = new google.maps.Marker({
+      position: {lat: markers[i][1], lng: markers[i][2]},
+      map: map,
+       animation: google.maps.Animation.BOUNCE,
+      title: markers[i][0]
+      });
+    }
+
+  }
